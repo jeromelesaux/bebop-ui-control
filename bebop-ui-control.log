@@ -1,0 +1,69 @@
+Message : 2016/11/15 16:14:59 main.go:29: Logger service initiated.
+Message : 2016/11/15 16:14:59 main.go:41: Drone and gobots services initiated.
+Message : 2016/11/15 16:21:00 main.go:29: Logger service initiated.
+Message : 2016/11/15 16:21:00 main.go:33: Joystick adapter service initiated.
+Message : 2016/11/15 16:21:00 main.go:40: Bebop adapter service initiated.
+Message : 2016/11/15 16:21:00 main.go:42: Bebop driver service initiated.
+Message : 2016/11/15 16:21:00 main.go:44: Drone and gobots services initiated.
+Message : 2016/11/15 16:23:00 main.go:29: Logger service initiated.
+Message : 2016/11/15 16:23:00 main.go:33: Joystick adapter service initiated.
+Message : 2016/11/15 16:23:00 main.go:40: Bebop adapter service initiated.
+Message : 2016/11/15 16:23:00 main.go:42: Bebop driver service initiated.
+Message : 2016/11/15 16:23:00 main.go:44: Drone and gobots services initiated.
+Message : 2016/11/15 16:23:00 main.go:153: Robot service initiated.
+Message : 2016/11/15 16:23:55 main.go:29: Logger service initiated.
+Message : 2016/11/15 16:23:55 main.go:33: Joystick adapter service initiated.
+Message : 2016/11/15 16:23:55 main.go:40: Bebop adapter service initiated.
+Message : 2016/11/15 16:23:55 main.go:42: Bebop driver service initiated.
+Message : 2016/11/15 16:23:55 main.go:44: Drone and gobots services initiated.
+Message : 2016/11/15 16:23:55 main.go:153: Robot service initiated.
+Message : 2016/11/15 16:23:55 main.go:155: Starting gobot service initiated.
+Message : 2016/11/15 16:26:37 main.go:29: Logger service initiated.
+Message : 2016/11/15 16:26:37 main.go:33: Joystick adapter service initiated.
+Message : 2016/11/15 16:26:37 main.go:40: Bebop adapter service initiated.
+Message : 2016/11/15 16:26:37 main.go:42: Bebop driver service initiated.
+Message : 2016/11/15 16:26:37 main.go:44: Drone and gobots services initiated.
+Message : 2016/11/15 16:26:37 main.go:153: Robot service initiated.
+Message : 2016/11/15 16:26:37 main.go:156: Starting gobot service initiated.
+Message : 2016/11/15 16:31:41 main.go:29: Logger service initiated.
+Message : 2016/11/15 16:31:41 main.go:33: Joystick adapter service initiated.
+Message : 2016/11/15 16:31:41 main.go:40: Bebop adapter service initiated.
+Message : 2016/11/15 16:31:41 main.go:42: Bebop driver service initiated.
+Message : 2016/11/15 16:31:41 main.go:44: Drone and gobots services initiated.
+Message : 2016/11/15 16:31:41 main.go:153: Robot service initiated.
+Message : 2016/11/15 16:31:41 main.go:156: Starting gobot service initiated.
+Message : 2016/11/15 16:31:53 main.go:30: Logger service initiated.
+Message : 2016/11/15 16:31:53 main.go:37: Joystick adapter service initiated.
+Message : 2016/11/15 16:31:53 main.go:44: Bebop adapter service initiated.
+Message : 2016/11/15 16:31:53 main.go:46: Bebop driver service initiated.
+Message : 2016/11/15 16:31:53 main.go:48: Drone and gobots services initiated.
+Message : 2016/11/15 16:31:53 main.go:157: Robot service initiated.
+Message : 2016/11/15 16:31:53 main.go:160: Starting gobot service initiated.
+Message : 2016/11/15 16:34:43 main.go:29: Logger service initiated.
+Message : 2016/11/15 16:34:43 main.go:35: Joystick adapter service initiated.
+Message : 2016/11/15 16:34:43 main.go:42: Bebop adapter service initiated.
+Message : 2016/11/15 16:34:43 main.go:44: Bebop driver service initiated.
+Message : 2016/11/15 16:34:43 main.go:46: Drone and gobots services initiated.
+Message : 2016/11/15 16:34:43 main.go:155: Robot service initiated.
+Message : 2016/11/15 16:34:43 main.go:158: Starting gobot service initiated.
+Message : 2016/11/15 16:40:01 main.go:30: Logger service initiated.
+Message : 2016/11/15 16:40:01 main.go:36: Joystick adapter service initiated.
+Message : 2016/11/15 16:40:01 main.go:43: Bebop adapter service initiated.
+Message : 2016/11/15 16:40:01 main.go:45: Bebop driver service initiated.
+Message : 2016/11/15 16:40:01 main.go:47: Drone and gobots services initiated.
+Message : 2016/11/15 16:40:01 main.go:155: Robot service initiated.
+Message : 2016/11/15 16:40:01 main.go:158: Starting gobot service initiated.
+Message : 2016/11/15 16:41:22 main.go:34: Logger service initiated.
+Message : 2016/11/15 16:41:22 main.go:40: Joystick adapter service initiated.
+Message : 2016/11/15 16:41:22 main.go:47: Bebop adapter service initiated.
+Message : 2016/11/15 16:41:22 main.go:49: Bebop driver service initiated.
+Message : 2016/11/15 16:41:22 main.go:51: Drone and gobots services initiated.
+Message : 2016/11/15 16:41:22 main.go:159: Robot service initiated.
+Message : 2016/11/15 16:41:22 main.go:162: Starting gobot service initiated.
+Message : 2016/11/15 16:42:18 main.go:34: Logger service initiated.
+Message : 2016/11/15 16:42:18 main.go:40: Joystick adapter service initiated.
+Message : 2016/11/15 16:42:18 main.go:47: Bebop adapter service initiated.
+Message : 2016/11/15 16:42:18 main.go:49: Bebop driver service initiated.
+Message : 2016/11/15 16:42:18 main.go:51: Drone and gobots services initiated.
+Message : 2016/11/15 16:42:18 main.go:159: Robot service initiated.
+Message : 2016/11/15 16:42:18 main.go:162: Starting gobot service initiated.
