@@ -21,8 +21,10 @@ import (
 // arguments used for the app
 // discover joystick's button, hat and axis from sdl layer
 var testjoystick = flag.Bool("testjoystick", false, "test your joystick control id, false by default")
+
 // overload the joystick configuration file path
 var jConfig = flag.String("joystickconfig", "", "Path of the joystick config")
+
 // global varirables
 var recording = false
 var Logger *log.Logger
@@ -143,7 +145,6 @@ type pair struct {
 	y float64
 }
 
-
 func validatePitch(data float64, offset float64) int {
 	value := math.Abs(data) / offset
 	if value >= 0.1 {
@@ -244,7 +245,6 @@ func discoverJoystick(gbot *gobot.Gobot, joystickDriver *joystick.JoystickDriver
 			button = Pair{Name: utils.RightSuppressButton(joystick.TrianglePress), ID: int(id)}
 			joystickConfig.Buttons = append(joystickConfig.Buttons, button)
 
-
 			// define the square button
 			// stop and start the recording video
 			fmt.Println("Click button to start and stop the video record of the drone : ")
@@ -273,7 +273,8 @@ func discoverJoystick(gbot *gobot.Gobot, joystickDriver *joystick.JoystickDriver
 			button = Pair{Name: utils.RightAddStick(joystick.Left), ID: int(id)}
 			joystickConfig.Buttons = append(joystickConfig.Buttons, button)
 
-
+			// missing backward and forward setup
+			// missing clockwise and counterclockwise
 
 		})
 
@@ -299,7 +300,7 @@ func keyboardQuit(data interface{}) {
 	}
 }
 
-func droneRecording(data interface{}) {
+func droneRecording(_ interface{}) {
 	if recording {
 		drone.StopRecording()
 	} else {
@@ -308,7 +309,7 @@ func droneRecording(data interface{}) {
 	recording = !recording
 }
 
-func droneStop(data interface{}) {
+func droneStop(_ interface{}) {
 	drone.Stop()
 }
 
@@ -333,6 +334,7 @@ func droneForwardAndBackward(data interface{}) {
 	}
 }
 
+
 func droneLeftAndRight(data interface{}) {
 	val := float64(data.(int16))
 	if leftStick.x != val {
@@ -340,12 +342,12 @@ func droneLeftAndRight(data interface{}) {
 	}
 }
 
-func droneTakeOff(data interface{}) {
+func droneTakeOff(_ interface{}) {
 	drone.HullProtection(true)
 	drone.TakeOff()
 }
 
-func droneLand(data interface{}) {
+func droneLand(_ interface{}) {
 	drone.Land()
 }
 
