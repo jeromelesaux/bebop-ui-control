@@ -334,7 +334,6 @@ func droneForwardAndBackward(data interface{}) {
 	}
 }
 
-
 func droneLeftAndRight(data interface{}) {
 	val := float64(data.(int16))
 	if leftStick.x != val {

@@ -5,7 +5,7 @@ MV=mv
 
 SOURCEDIR=.
 SOURCES := $(shell find $(SOURCEDIR) -name '*.go')
-GOOS=linux
+GOOS=darwin
 GOARCH=amd64
 
 VERSION:=1.0
@@ -14,7 +14,7 @@ PREVIOUS_VERSION=$(shell echo $$((${VERSION} - 1)))
 EXEC=bebop-ui-control
 
 BUILD_TIME=`date +%FT%T%z`
-PACKAGES :=
+PACKAGES :=  github.com/hybridgroup/gobot github.com/veandco/go-sdl2/sdl
 
 LIBS=
 
