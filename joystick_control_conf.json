@@ -1,33 +1,6 @@
 {
-    "name": "PowerA MINI PROEX Controller",
-    "guid": "30001983600083000100",
-    "hats": [
-        {
-            "hat": 0,
-            "name": "down",
-            "id": 4
-        },
-        {
-            "hat": 0,
-            "name": "up",
-            "id": 1
-        },
-        {
-            "hat": 0,
-            "name": "left",
-            "id": 8
-        },
-        {
-            "hat": 0,
-            "name": "right",
-            "id": 2
-        },
-        {
-            "hat": 0,
-            "name": "released",
-            "id": 0
-        }
-    ],
+    "name": "Sony PLAYSTATION(R)4 Controller",
+    "guid": "1234",
     "axis": [
         {
             "name": "left_x",
@@ -39,65 +12,81 @@
         },
         {
             "name": "right_x",
-            "id": 3
+            "id": 2
         },
         {
             "name": "right_y",
-            "id": 4
-        },
-        {
-            "name": "rt",
             "id": 5
         },
         {
-            "name": "lt",
-            "id": 2
+            "name": "l2",
+            "id": 3
+        },
+        {
+            "name": "r2",
+            "id": 4
+        },
+        {
+            "name": "up",
+            "id": 7
+        },
+        {
+            "name": "down",
+            "id": 6
+        },
+        {
+            "name": "left",
+            "id": 7
+        },
+        {
+            "name": "right",
+            "id": 8
         }
     ],
     "buttons": [
         {
-            "name": "x",
-            "id": 2
-        },
-        {
-            "name": "a",
+            "name": "square",
             "id": 0
         },
         {
-            "name": "b",
-            "id": 1
-        },
-        {
-            "name": "y",
+            "name": "triangle",
             "id": 3
         },
         {
-            "name": "lb",
+            "name": "circle",
+            "id": 2
+        },
+        {
+            "name": "x",
+            "id": 1
+        },
+        {
+            "name": "l1",
             "id": 4
         },
         {
-            "name": "rb",
-            "id": 5
-        },
-        {
-            "name": "back",
+            "name": "l2",
             "id": 6
         },
         {
-            "name": "start",
+            "name": "r2",
             "id": 7
         },
         {
-            "name": "home",
+            "name": "r1",
+            "id": 5
+        },
+        {
+            "name": "share",
             "id": 8
         },
         {
-            "name": "right_stick",
-            "id": 10
+            "name": "options",
+            "id": 9
         },
         {
-            "name": "left_stick",
-            "id": 9
+            "name": "home",
+            "id": 12
         }
     ]
 }
