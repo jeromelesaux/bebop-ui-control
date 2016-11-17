@@ -5,7 +5,7 @@ MV=mv
 
 SOURCEDIR=.
 SOURCES := $(shell find $(SOURCEDIR) -name '*.go')
-GOOS=darwin
+GOOS=linux
 GOARCH=amd64
 
 VERSION:=1.0

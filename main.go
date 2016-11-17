@@ -46,13 +46,21 @@ func main() {
 		fmt.Fprintf(os.Stdout, "Error while creating log file "+err.Error())
 	}
 	defer flog.Close()
+	Logger = log.New(flog, "Message : ", log.Ldate|log.Ltime|log.Lshortfile)
+
+	// if discover mode set, only execute discoverJoystick function
+	// press key Q to exit the program
+	if *testjoystick == true {
+		Logger.Println("Discover service started.")
+		discoverJoystick()
+	}
 
 	// manage the joystick  configuration file path
 	if *jConfig != "" {
 		joystickConfigPath = *jConfig
+
 	}
 
-	Logger = log.New(flog, "Message : ", log.Ldate|log.Ltime|log.Lshortfile)
 	Logger.Println("Logger service initiated.")
 
 	// create a new gobot
@@ -66,13 +74,6 @@ func main() {
 		"ps3",
 		joystickConfigPath,
 	)
-
-	// if discover mode set, only execute discoverJoystick function
-	// press key Q to exit the program
-	if *testjoystick == true {
-		Logger.Println("Discover service started.")
-		discoverJoystick(gbot, stick)
-	}
 
 	// create drone driver adaptor
 	bebopAdaptor := bebop.NewBebopAdaptor("Drone")
@@ -215,80 +216,88 @@ type joystickConfig struct {
 	Hats    []Hat  `json:"Hats"`
 }
 
-func discoverJoystick(gbot *gobot.Gobot, joystickDriver *joystick.JoystickDriver) {
-	keys := keyboard.NewKeyboardDriver("keyboard")
-	work := func() {
-		keys.On(keyboard.Key, keyboardQuit)
-	}
-	joystickRobot := gobot.NewRobot("joystickbot",
-		[]gobot.Connection{},
-		[]gobot.Device{joystickDriver},
-		func() {
+func discoverJoystick() {
+	const delay = 1000000000
+	//keys := keyboard.NewKeyboardDriver("keyboard")
+	//work := func() {
+	//	keys.On(keyboard.Key, keyboardQuit)
+	//}
+	//joystickRobot := gobot.NewRobot("joystickbot",
+	//	[]gobot.Connection{},
+	//	[]gobot.Device{joystickDriver},
+	//	func() {
 
-			button := Pair{}
+	button := Pair{}
 
-			// define all the joystick configuration
-			// robots joystick_driver compliant json format
-			joystickConfig := &joystickConfig{}
+	// define all the joystick configuration
+	// robots joystick_driver compliant json format
+	joystickConfig := &joystickConfig{}
 
-			// define the circle button
-			// take off the drone
-			fmt.Println("Click button to take off the drone : ")
-			_, id, _, _, _ := sdl_wrapper.SdlEventData()
-			button = Pair{Name: utils.RightSuppressButton(joystick.CirclePress), ID: int(id)}
-			joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	// define the circle button
+	// take off the drone
+	fmt.Println("Click button to take off the drone : ")
+	_, id, _, _, _ := sdl_wrapper.SdlEventData(sdl_wrapper.BUTTON)
+	button = Pair{Name: utils.RightSuppressButton(joystick.CirclePress), ID: int(id)}
+	joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	time.Sleep(delay)
 
-			// define the triangle button
-			// stop the drone
-			fmt.Println("Click button to stop the drone : ")
-			_, id, _, _, _ = sdl_wrapper.SdlEventData()
-			button = Pair{Name: utils.RightSuppressButton(joystick.TrianglePress), ID: int(id)}
-			joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	// define the triangle button
+	// stop the drone
+	fmt.Println("Click button to stop the drone : ")
+	_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.BUTTON)
+	button = Pair{Name: utils.RightSuppressButton(joystick.TrianglePress), ID: int(id)}
+	joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	time.Sleep(delay)
 
-			// define the square button
-			// stop and start the recording video
-			fmt.Println("Click button to start and stop the video record of the drone : ")
-			_, id, _, _, _ = sdl_wrapper.SdlEventData()
-			button = Pair{Name: utils.RightSuppressButton(joystick.SquarePress), ID: int(id)}
-			joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	// define the square button
+	// stop and start the recording video
+	fmt.Println("Click button to start and stop the video record of the drone : ")
+	_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.BUTTON)
+	button = Pair{Name: utils.RightSuppressButton(joystick.SquarePress), ID: int(id)}
+	joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	time.Sleep(delay)
 
-			// define the X button
-			// landing the drone
-			fmt.Println("Click button to land the drone : ")
-			_, id, _, _, _ = sdl_wrapper.SdlEventData()
-			button = Pair{Name: utils.RightSuppressButton(joystick.XPress), ID: int(id)}
-			joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	// define the X button
+	// landing the drone
+	fmt.Println("Click button to land the drone : ")
+	_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.BUTTON)
+	button = Pair{Name: utils.RightSuppressButton(joystick.XPress), ID: int(id)}
+	joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	time.Sleep(delay)
 
-			// define the right stick
-			// pilot the drone
-			fmt.Println("Click right stick : ")
-			_, id, _, _, _ = sdl_wrapper.SdlEventData()
-			button = Pair{Name: utils.RightAddStick(joystick.Right), ID: int(id)}
-			joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	// define the right stick
+	// pilot the drone
+	fmt.Println("Click right stick : ")
+	_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.AXIS)
+	button = Pair{Name: utils.RightAddStick(joystick.Right), ID: int(id)}
+	joystickConfig.Axis = append(joystickConfig.Axis, button)
+	time.Sleep(delay)
 
-			// define the left stick
-			// pilot the drone
-			fmt.Println("Click left stick : ")
-			_, id, _, _, _ = sdl_wrapper.SdlEventData()
-			button = Pair{Name: utils.RightAddStick(joystick.Left), ID: int(id)}
-			joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	// define the left stick
+	// pilot the drone
+	fmt.Println("Click left stick : ")
+	_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.AXIS)
+	button = Pair{Name: utils.RightAddStick(joystick.Left), ID: int(id)}
+	joystickConfig.Buttons = append(joystickConfig.Buttons, button)
 
-			// missing backward and forward setup
-			// missing clockwise and counterclockwise
 
-		})
+	// missing backward and forward setup
+	// missing clockwise and counterclockwise
 
-	keyRobot := gobot.NewRobot("keyboardbBot",
-		[]gobot.Connection{},
-		[]gobot.Device{keys},
-		work,
-	)
-	gbot.AddRobot(keyRobot)
-	Logger.Println("keyboardbot service started")
-	gbot.AddRobot(joystickRobot)
-	Logger.Println("joystickbot service started")
-
-	gbot.Start()
+	//	})
+	//
+	//keyRobot := gobot.NewRobot("keyboardbBot",
+	//	[]gobot.Connection{},
+	//	[]gobot.Device{keys},
+	//	work,
+	//)
+	//gbot.AddRobot(keyRobot)
+	//Logger.Println("keyboardbot service started")
+	//gbot.AddRobot(joystickRobot)
+	//Logger.Println("joystickbot service started")
+	//
+	//gbot.Start()
+	os.Exit(1)
 }
 
 func keyboardQuit(data interface{}) {
