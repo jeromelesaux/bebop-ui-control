@@ -2,6 +2,7 @@ package main
 
 import (
 	"bebop-ui-control/sdl-wrapper"
+	"bebop-ui-control/utils"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -24,6 +25,9 @@ var testjoystick = flag.Bool("testjoystick", false, "test your joystick control 
 
 // overload the joystick configuration file path
 var jConfig = flag.String("joystickconfig", "", "Path of the joystick config")
+
+// default application configuration
+var appConfig = flag.String("appconfig", "", "Path of this application config")
 
 // global varirables
 var recording = false
@@ -101,14 +105,14 @@ func main() {
 		}()
 
 		// set all joystick's buttons, hats and axis mapping to drone orders
-		stick.On(joystick.CirclePress, droneRecording)
-		stick.On(joystick.SquarePress, droneTakeOff)
-		stick.On(joystick.TrianglePress, droneStop)
-		stick.On(joystick.XPress, droneLand)
-		stick.On(joystick.LeftX, droneLeftAndRight)
-		stick.On(joystick.LeftY, droneForwardAndBackward)
-		stick.On(joystick.RightX, droneClockwise)
-		stick.On(joystick.RightY, droneUpAndDown)
+		stick.On(utils.AppConfig.ActionsJoystickMapping["droneRecording"], droneRecording)
+		stick.On(utils.AppConfig.ActionsJoystickMapping["droneTakeOff"], droneTakeOff)
+		stick.On(utils.AppConfig.ActionsJoystickMapping["droneStop"], droneStop)
+		stick.On(utils.AppConfig.ActionsJoystickMapping["droneLand"], droneLand)
+		stick.On(utils.AppConfig.ActionsJoystickMapping["droneLeftAndRight"], droneLeftAndRight)
+		stick.On(utils.AppConfig.ActionsJoystickMapping["droneForwardAndBackward"], droneForwardAndBackward)
+		stick.On(utils.AppConfig.ActionsJoystickMapping["droneClockwise"], droneClockwise)
+		stick.On(utils.AppConfig.ActionsJoystickMapping["droneUpAndDown"], droneUpAndDown)
 
 		gobot.Every(10*time.Millisecond, droneLeftStick)
 		gobot.Every(10*time.Millisecond, droneRightStick)

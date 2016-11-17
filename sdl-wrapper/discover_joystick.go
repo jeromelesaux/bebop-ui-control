@@ -119,15 +119,7 @@ func SdlEventData(eventType JoystickType) (which sdl.JoystickID, id uint8, hat u
 			case *sdl.JoyDeviceEvent:
 				if data.Type == sdl.JOYDEVICEADDED {
 					joysticks[int(data.Which)] = sdl.JoystickOpen(data.Which)
-					//if joysticks[int(data.Which)] != nil {
-					//	fmt.Printf("Joystick %d connected\n", data.Which)
-					//}
 				} else if data.Type == sdl.JOYDEVICEREMOVED {
-					//if joystick := joysticks[int(data.Which)]; joystick != nil {
-					//	// remove the joystick from slice
-					//	joystick.Close()
-					//}
-
 					fmt.Printf("Joystick %d disconnected\n", data.Which)
 				}
 				continue
