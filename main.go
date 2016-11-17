@@ -2,7 +2,7 @@ package main
 
 import (
 	"bebop-ui-control/sdl-wrapper"
-	"bebop-ui-control/utils"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"github.com/hybridgroup/gobot"
@@ -68,10 +68,10 @@ func main() {
 	gbot.AutoStop = true
 
 	// create default joystick adaptor
-	joystickAdaptor := joystick.NewJoystickAdaptor("ps3")
+	joystickAdaptor := joystick.NewJoystickAdaptor("joystickBot")
 	Logger.Println("Joystick adapter service initiated.")
 	stick := joystick.NewJoystickDriver(joystickAdaptor,
-		"ps3",
+		"xbox",
 		joystickConfigPath,
 	)
 
@@ -195,108 +195,72 @@ func ffmpeg() (stdin io.WriteCloser, stderr io.ReadCloser, err error) {
 	return stdin, stderr, nil
 }
 
-// pair is a JSON representation of name and id
-type Pair struct {
-	Name string `json:"name"`
-	ID   int    `json:"id"`
-}
-
-// hat is a JSON representation of hat, name and id
-type Hat struct {
-	Hat  int    `json:"hat"`
-	Name string `json:"name"`
-	ID   int    `json:"id"`
-}
-
-type joystickConfig struct {
-	Name    string `json:"name"`
-	GUID    string `json:"guid"`
-	Axis    []Pair `json:"axis"`
-	Buttons []Pair `json:"buttons"`
-	Hats    []Hat  `json:"Hats"`
-}
-
 func discoverJoystick() {
-	const delay = 1000000000
-	//keys := keyboard.NewKeyboardDriver("keyboard")
-	//work := func() {
-	//	keys.On(keyboard.Key, keyboardQuit)
-	//}
-	//joystickRobot := gobot.NewRobot("joystickbot",
-	//	[]gobot.Connection{},
-	//	[]gobot.Device{joystickDriver},
-	//	func() {
-
-	button := Pair{}
 
 	// define all the joystick configuration
 	// robots joystick_driver compliant json format
-	joystickConfig := &joystickConfig{}
+	joystickConfig := &sdl_wrapper.JoystickConfig{}
 
-	// define the circle button
-	// take off the drone
-	fmt.Println("Click button to take off the drone : ")
-	_, id, _, _, _ := sdl_wrapper.SdlEventData(sdl_wrapper.BUTTON)
-	button = Pair{Name: utils.RightSuppressButton(joystick.CirclePress), ID: int(id)}
-	joystickConfig.Buttons = append(joystickConfig.Buttons, button)
-	time.Sleep(delay)
-
-	// define the triangle button
-	// stop the drone
-	fmt.Println("Click button to stop the drone : ")
-	_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.BUTTON)
-	button = Pair{Name: utils.RightSuppressButton(joystick.TrianglePress), ID: int(id)}
-	joystickConfig.Buttons = append(joystickConfig.Buttons, button)
-	time.Sleep(delay)
-
-	// define the square button
-	// stop and start the recording video
-	fmt.Println("Click button to start and stop the video record of the drone : ")
-	_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.BUTTON)
-	button = Pair{Name: utils.RightSuppressButton(joystick.SquarePress), ID: int(id)}
-	joystickConfig.Buttons = append(joystickConfig.Buttons, button)
-	time.Sleep(delay)
-
-	// define the X button
-	// landing the drone
-	fmt.Println("Click button to land the drone : ")
-	_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.BUTTON)
-	button = Pair{Name: utils.RightSuppressButton(joystick.XPress), ID: int(id)}
-	joystickConfig.Buttons = append(joystickConfig.Buttons, button)
-	time.Sleep(delay)
-
-	// define the right stick
-	// pilot the drone
-	fmt.Println("Click right stick : ")
-	_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.AXIS)
-	button = Pair{Name: utils.RightAddStick(joystick.Right), ID: int(id)}
-	joystickConfig.Axis = append(joystickConfig.Axis, button)
-	time.Sleep(delay)
-
-	// define the left stick
-	// pilot the drone
-	fmt.Println("Click left stick : ")
-	_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.AXIS)
-	button = Pair{Name: utils.RightAddStick(joystick.Left), ID: int(id)}
-	joystickConfig.Buttons = append(joystickConfig.Buttons, button)
-
-
-	// missing backward and forward setup
-	// missing clockwise and counterclockwise
-
-	//	})
+	//strategy :
+	// map joystick to configuration
+	// and set specific buttons, hat, axis to drone functions
+	joystickConfig.Name = "New configuration"
+	joystickConfig.GUID = "10698040"
+	joystickConfig = sdl_wrapper.DefineJoystickButtons(joystickConfig)
+	joystickConfig = sdl_wrapper.DefineJoystickAxis(joystickConfig)
+	joystickConfig = sdl_wrapper.DefineJoystickHats(joystickConfig)
 	//
-	//keyRobot := gobot.NewRobot("keyboardbBot",
-	//	[]gobot.Connection{},
-	//	[]gobot.Device{keys},
-	//	work,
-	//)
-	//gbot.AddRobot(keyRobot)
-	//Logger.Println("keyboardbot service started")
-	//gbot.AddRobot(joystickRobot)
-	//Logger.Println("joystickbot service started")
+	//// define the circle button
+	//// take off the drone
+	//fmt.Println("Click button to take off the drone : ")
+	//_, id, _, _, _ := sdl_wrapper.SdlEventData(sdl_wrapper.BUTTON)
+	//button = sdl_wrapper.Pair{Name: utils.RightSuppressButton(joystick.CirclePress), ID: int(id)}
+	//joystickConfig.Buttons = append(joystickConfig.Buttons, button)
 	//
-	//gbot.Start()
+	//// define the triangle button
+	//// stop the drone
+	//fmt.Println("Click button to stop the drone : ")
+	//_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.BUTTON)
+	//button = sdl_wrapper.Pair{Name: utils.RightSuppressButton(joystick.TrianglePress), ID: int(id)}
+	//joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	//
+	//// define the square button
+	//// stop and start the recording video
+	//fmt.Println("Click button to start and stop the video record of the drone : ")
+	//_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.BUTTON)
+	//button = sdl_wrapper.Pair{Name: utils.RightSuppressButton(joystick.SquarePress), ID: int(id)}
+	//joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	//
+	//// define the X button
+	//// landing the drone
+	//fmt.Println("Click button to land the drone : ")
+	//_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.BUTTON)
+	//button = sdl_wrapper.Pair{Name: utils.RightSuppressButton(joystick.XPress), ID: int(id)}
+	//joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+	//
+	//// define the right stick
+	//// pilot the drone
+	//fmt.Println("Click right stick : ")
+	//_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.AXIS)
+	//button = sdl_wrapper.Pair{Name: utils.RightAddStick(joystick.Right), ID: int(id)}
+	//joystickConfig.Axis = append(joystickConfig.Axis, button)
+	//
+	//// define the left stick
+	//// pilot the drone
+	//fmt.Println("Click left stick : ")
+	//_, id, _, _, _ = sdl_wrapper.SdlEventData(sdl_wrapper.AXIS)
+	//button = sdl_wrapper.Pair{Name: utils.RightAddStick(joystick.Left), ID: int(id)}
+	//joystickConfig.Buttons = append(joystickConfig.Buttons, button)
+
+	f, err := os.Create("joystick_own_config.json")
+	if err != nil {
+		Logger.Fatal(err.Error())
+		fmt.Println(err.Error())
+		os.Exit(0)
+	}
+	defer f.Close()
+	json.NewEncoder(f).Encode(&joystickConfig)
+
 	os.Exit(1)
 }
 
