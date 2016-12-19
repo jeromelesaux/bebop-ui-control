@@ -158,7 +158,7 @@ func DefineJoystickHats(jconfig *JoystickConfig) *JoystickConfig {
 	for _, hat := range AxisLabels {
 		fmt.Printf("Press %s hat.", hat)
 		_, id, hatValue, _, _ := SdlEventData(HAT)
-		hatSetup := Hat{ID: int(id), Name: hat, Hat: hatValue}
+		hatSetup := Hat{ID: int(id), Name: hat, Hat: int(hatValue)}
 		jconfig.Hats = append(jconfig.Hats, hatSetup)
 	}
 	return jconfig
