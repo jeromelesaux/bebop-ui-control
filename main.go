@@ -1,8 +1,6 @@
 package main
 
 import (
-	"bebop-ui-control/sdl-wrapper"
-	"bebop-ui-control/utils"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -10,6 +8,8 @@ import (
 	"github.com/hybridgroup/gobot/platforms/bebop"
 	"github.com/hybridgroup/gobot/platforms/joystick"
 	"github.com/hybridgroup/gobot/platforms/keyboard"
+	"github.com/jeromelesaux/bebop-ui-control/sdl-wrapper"
+	"github.com/jeromelesaux/bebop-ui-control/utils"
 	"io"
 	"io/ioutil"
 	"log"

@@ -34,12 +34,12 @@ package: ${EXEC}
 		@rm -rf ./deploy/${EXEC}_${VERSION}
 
 test: $(EXEC)
-		@GOPATH=$(PWD)/../.. GOOS=${GOOS} GOARCH=${GOARCH} go test ./...
+		@GOOS=${GOOS} GOARCH=${GOARCH} go test ./...
 		@echo " Tests OK."
 
 $(EXEC): organize $(SOURCES)
 		@echo "    Compilation des sources ${BUILD_TIME}"
-		@GOPATH=$(PWD)/../.. GOOS=${GOOS} GOARCH=${GOARCH} go build ${LDFLAGS} -o ${EXEC}-${VERSION} $(SOURCEDIR)/main.go
+		@GOOS=${GOOS} GOARCH=${GOARCH} go build ${LDFLAGS} -o ${EXEC}-${VERSION} $(SOURCEDIR)/main.go
 		@echo "    ${EXEC}-${VERSION} generated."
 
 organize: audit
